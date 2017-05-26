@@ -71,6 +71,8 @@ public class Cell{
  
  public void moveHere(InteractiveFrame f){
    if(this.activated == true){
+      this.possiblePiece.location.empty = true;
+      this.empty = false;
       this.myPiece = this.possiblePiece;
       this.myPiece.location = this;
       this.possiblePiece = null;

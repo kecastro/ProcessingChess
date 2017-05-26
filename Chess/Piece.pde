@@ -66,6 +66,9 @@ public void select(InteractiveFrame f){
     int i = this.location.i;
     int j = this.location.j;
     
+    int pos = board.indexOf(this.location);
+    int row = (pos/8) + 1;
+    
     this.posibleMoves = new ArrayList<Cell>();
     
     if(this.selected == false){
@@ -74,44 +77,50 @@ public void select(InteractiveFrame f){
          board.get(k).deactivate();
        }
        if(this.name.equals("peon")){
-         if(this.id < 3){
-           for(int c = 0; c < this.board.size(); c++){
-             if(board.get(c).i == i + 1 && board.get(c).j == j){
-               if(board.get(c).isEmpty()){
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
+         if(this.id < 16 && pos + 8 < 64){
+               if(board.get(pos + 8).isEmpty()){
+                 board.get(pos + 8).activate();
+                 board.get(pos + 8).possiblePiece = this;
                }
-             }
-           }
            //this.posibleMoves.add();
          }
        } 
        else if(this.name.equals("torre")){
-         for(int c = 0; c < this.board.size(); c++){
-             if(board.get(c).j == j){
-                if(board.get(c).isEmpty()){
-                  board.get(c).activate();
-                  board.get(c).possiblePiece = this;
-                }
-                else{
-                  if(this.location.i != board.get(c).i || this.location.j != board.get(c).j){
-                    break;
-                  }
-                }
-             }
+         for(int c = pos + 8; c < 64; c += 8){ //Movement foward
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+            }
+            else{
+              break;
+            }
          }
-         for(int c = 0; c < this.board.size(); c++){
-             if(board.get(c).i == i){
-                if(board.get(c).isEmpty()){
-                  board.get(c).activate();
-                  board.get(c).possiblePiece = this;
-                }
-                else{
-                  if(this.location.i != board.get(c).i || this.location.j != board.get(c).j){
-                    break;
-                  }
-                }
-             }
+         for(int c = pos - 8; c >= 0; c -= 8){ //Movement backward
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+            }
+            else{
+              break;
+            }
+         }
+         for(int c = pos + 1; c < row * 8 ; c++){ //Movement rigth
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+            }
+            else{
+              break;
+            }
+         }
+         for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ //Movement left
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+            }
+            else{
+              break;
+            }
          }
        }
     }

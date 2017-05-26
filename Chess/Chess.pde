@@ -56,8 +56,14 @@ void setup() {
   frame1.removeBindings();
   frame1.setClickBinding(pieces.get(0), LEFT,1, "select");
   frame2 = new InteractiveFrame(scene, pieces.get(1), "piecesDrawing");
+  frame2.removeBindings();
+  frame2.setClickBinding(pieces.get(1), LEFT,1, "select");
   frame3 = new InteractiveFrame(scene, pieces.get(2), "piecesDrawing");
+  frame3.removeBindings();
+  frame3.setClickBinding(pieces.get(2), LEFT,1, "select");
   frame4 = new InteractiveFrame(scene, pieces.get(3), "piecesDrawing");
+  frame4.removeBindings();
+  frame4.setClickBinding(pieces.get(3), LEFT,1, "select");
 
 
 
