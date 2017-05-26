@@ -74,8 +74,12 @@ public class Cell{
       this.myPiece = this.possiblePiece;
       this.myPiece.location = this;
       this.possiblePiece = null;
-      this.activated = false;
       this.myPiece.selected = false;
+      
+      for(int i = 0; i < this.myPiece.board.size(); i++){
+        this.myPiece.board.get(i).activated = false;
+      }
+      
    }
  }
   

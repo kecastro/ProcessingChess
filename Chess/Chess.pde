@@ -9,14 +9,6 @@ InteractiveFrame[] board;
 ArrayList<Cell> cells;
 ArrayList<Piece> pieces;
 
-Piece p1w;
-Piece p2w;
-Piece p3w;
-
-Piece p1b;
-Piece p2b;
-Piece p3b;
-
 void settings() {
   size(1200, 600, P3D);
 }
@@ -41,19 +33,14 @@ void setup() {
   
   pieces = new ArrayList<Piece>();
   //Pieces
-  pieces.add( new Piece("peon", cells.get(8), 1, cells) ) ;
-  cells.get(8).addPiece(pieces.get(0)); //Revisar cuando se agreguen todas las fichas
-  pieces.add( new Piece("peon", cells.get(9), 2, cells) );
-  cells.get(9).addPiece(pieces.get(1));
-  pieces.add( new Piece("peon", cells.get(10), 3, cells) );
-  cells.get(10).addPiece(pieces.get(2));
-  
-  pieces.add( new Piece("peon", cells.get(55), 22, cells) );
-  cells.get(55).addPiece(pieces.get(3));
-  pieces.add( new Piece("peon", cells.get(54), 23, cells) );
-  cells.get(54).addPiece(pieces.get(4));
-  pieces.add( new Piece("peon", cells.get(53), 24, cells) );
-  cells.get(53).addPiece(pieces.get(5));
+  pieces.add( new Piece("torre", cells.get(0), 1, cells) );
+  cells.get(0).addPiece(pieces.get(0));
+  pieces.add( new Piece("peon", cells.get(8), 9, cells) ) ;
+  cells.get(8).addPiece(pieces.get(1)); //Revisar cuando se agreguen todas las fichas
+  pieces.add( new Piece("peon", cells.get(9), 10, cells) );
+  cells.get(9).addPiece(pieces.get(2));
+  pieces.add( new Piece("peon", cells.get(10), 11, cells) );
+  cells.get(10).addPiece(pieces.get(3));
   
   canvas = createGraphics(width/2, height, P3D);
   scene = new Scene(this, canvas);
@@ -71,9 +58,7 @@ void setup() {
   frame2 = new InteractiveFrame(scene, pieces.get(1), "piecesDrawing");
   frame3 = new InteractiveFrame(scene, pieces.get(2), "piecesDrawing");
   frame4 = new InteractiveFrame(scene, pieces.get(3), "piecesDrawing");
-  frame5 = new InteractiveFrame(scene, pieces.get(4), "piecesDrawing");
-  frame6 = new InteractiveFrame(scene, pieces.get(5), "piecesDrawing");
-  
+
 
 
   secondCanvas = createGraphics(width/2, height, P2D);
