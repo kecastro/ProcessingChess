@@ -3,6 +3,7 @@ public class Piece{
   String name;
   boolean alive;
   boolean selected;
+  PShape s;
   Cell location;
   ArrayList<Cell> posibleMoves;
   ArrayList<Cell> board;
@@ -15,6 +16,12 @@ public class Piece{
     this.name = name;
     this.location = cell;
     this.board = board;
+    if (this.name.equals("torre")){
+      this.s=loadShape("models/rook.obj");
+    }
+    else if (this.name.equals("torre")){
+      this.s=loadShape("models/rook.obj");
+    }
   }
   
   public void move(Cell cell){
@@ -51,13 +58,22 @@ public class Piece{
     }
        
     pg.pushMatrix();
-    pg.translate(this.location.x, this.location.y, this.location.z + 10);
+    float sinTheta=sin(45);
+    float cosTheta = cos(45);
+    float xposition = this.location.y * cosTheta - this.location.z * sinTheta;
+    float yposition = this.location.z * cosTheta + this.location.y * sinTheta;
+    //pg.translate(this.location.x, this.location.y, this.location.z + 5);
+    pg.translate(xposition, yposition, this.location.z + 5);
     
      //Torre
     if(this.id == 1 || this.id == 8 || this.id == 17 || this.id == 24){
       pg.fill(0,0,200);
+      //this.s.translate(0, 0, 0); 
+      pg.shape(this.s, 0, 0, 10,10);
     }
-    pg.sphere(10);
+    else {
+      pg.sphere(10);
+    }
     pg.popMatrix();
  
   }
