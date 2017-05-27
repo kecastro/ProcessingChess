@@ -16,10 +16,10 @@ public class Piece{
     this.name = name;
     this.location = cell;
     this.board = board;
-    if (this.name.equals("torre")){
+    if (this.name.equals("rook")){
       this.s=loadShape("models/rook.obj");
     }
-    else if (this.name.equals("torre")){
+    else if (this.name.equals("rook")){
       this.s=loadShape("models/rook.obj");
     }
   }
@@ -58,12 +58,12 @@ public class Piece{
     }
        
     pg.pushMatrix();
-    float sinTheta=sin(45);
-    float cosTheta = cos(45);
-    float xposition = this.location.y * cosTheta - this.location.z * sinTheta;
-    float yposition = this.location.z * cosTheta + this.location.y * sinTheta;
+    //float sinTheta=sin(45);
+    //float cosTheta = cos(45);
+    //float xposition = this.location.y * cosTheta - this.location.z * sinTheta;
+    //float yposition = this.location.z * cosTheta + this.location.y * sinTheta;
     //pg.translate(this.location.x, this.location.y, this.location.z + 5);
-    pg.translate(xposition, yposition, this.location.z + 5);
+    pg.translate(this.location.x, this.location.y, this.location.z + 5);
     
      //Torre
     if(this.id == 1 || this.id == 8 || this.id == 17 || this.id == 24){
@@ -92,7 +92,7 @@ public void select(InteractiveFrame f){
       for(int k = 0; k < this.board.size(); k++){
          board.get(k).deactivate();
        }
-       if(this.name.equals("peon")){
+       if(this.name.equals("pawn")){
          if(this.id < 16 && pos + 8 < 64){
                if(board.get(pos + 8).isEmpty()){
                  board.get(pos + 8).activate();
@@ -101,7 +101,7 @@ public void select(InteractiveFrame f){
            //this.posibleMoves.add();
          }
        } 
-       else if(this.name.equals("torre")){
+       else if(this.name.equals("rook")){
          for(int c = pos + 8; c < 64; c += 8){ //Movement foward
             if(board.get(c).isEmpty()){
                board.get(c).activate();

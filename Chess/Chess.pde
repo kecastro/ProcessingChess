@@ -33,13 +33,13 @@ void setup() {
   
   pieces = new ArrayList<Piece>();
   //Pieces
-  pieces.add( new Piece("torre", cells.get(0), 1, cells) );
+  pieces.add( new Piece("rook", cells.get(0), 1, cells) );
   cells.get(0).addPiece(pieces.get(0));
-  pieces.add( new Piece("peon", cells.get(8), 9, cells) ) ;
+  pieces.add( new Piece("pawn", cells.get(8), 9, cells) ) ;
   cells.get(8).addPiece(pieces.get(1)); //Revisar cuando se agreguen todas las fichas
-  pieces.add( new Piece("peon", cells.get(9), 10, cells) );
+  pieces.add( new Piece("pawn", cells.get(9), 10, cells) );
   cells.get(9).addPiece(pieces.get(2));
-  pieces.add( new Piece("peon", cells.get(10), 11, cells) );
+  pieces.add( new Piece("pawn", cells.get(10), 11, cells) );
   cells.get(10).addPiece(pieces.get(3));
   
   canvas = createGraphics(width/2, height, P3D);
