@@ -16,6 +16,7 @@ public class Cell{
     this.activated = false;
     this.myPiece = null;
     this.possiblePiece = null;
+    this.possibleCapture = null;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -61,10 +62,10 @@ public class Cell{
     pg.pushMatrix();
     pg.translate(this.getX(), this.getY(), this.getZ());
     if(this.activated == true){
-      pg.fill(255,0,255);
-    }
-    else if(this.activated == true){
-      pg.fill(255,0,255);
+      if (this.possibleCapture!=null)
+        pg.fill(0,255,0);
+      else
+        pg.fill(255,0,255);
     }
     else{
       pg.fill(255);

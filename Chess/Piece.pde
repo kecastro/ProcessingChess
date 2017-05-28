@@ -133,8 +133,9 @@ public void select(InteractiveFrame f){
             }
             else{
               if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(pos + 8).activate();
-                board.get(pos + 8).possiblePiece = this;
+                board.get(c).possibleCapture = this;
+                board.get(c).activate();
+                board.get(c).possiblePiece = this;
               }
               break;
             }
@@ -146,8 +147,9 @@ public void select(InteractiveFrame f){
             }
             else{
               if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(pos + 8).activate();
-                board.get(pos + 8).possiblePiece = this;
+                board.get(c).possibleCapture = this;
+                board.get(c).activate();
+                board.get(c).possiblePiece = this;
               }
               break;
             }
@@ -159,8 +161,9 @@ public void select(InteractiveFrame f){
             }
             else{
               if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(pos + 8).activate();
-                board.get(pos + 8).possiblePiece = this;
+                board.get(c).possibleCapture = this;
+                board.get(c).activate();
+                board.get(c).possiblePiece = this;
               }
               break;
             }
@@ -172,9 +175,10 @@ public void select(InteractiveFrame f){
             }
             else{
               if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(pos + 8).activate();
-                board.get(pos + 8).possiblePiece = this;
-                board.get(pos + 8).possibleCapture = this;
+                board.get(c).possibleCapture = this;
+                board.get(c).activate();
+                board.get(c).possiblePiece = this;
+                
               }
               break;
             }
