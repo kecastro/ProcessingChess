@@ -70,7 +70,7 @@ public class Piece{
        this.s.setFill(color(180,0,0));
       }
       else{
-        this.s.setFill(color(230));
+        this.s.setFill(color(50));
       }
     }
     else{
@@ -78,7 +78,7 @@ public class Piece{
        this.s.setFill(color(180,0,0));
       }
       else{
-        this.s.setFill(color(50));
+        this.s.setFill(color(230));
       }     
     }
    
