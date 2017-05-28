@@ -59,33 +59,27 @@ public class Piece{
   public void piecesDrawing(PGraphics pg) {  
     pg.noStroke();
     
-    if(this.id <= 16){
-      if(this.selected == true){
-        pg.fill(240,0,0);
-      }
-      else{
-        pg.fill(230);
-      }
-    }
-    else{
-      if(this.selected == true){
-        pg.fill(240,0,0);
-      }
-      else{
-        pg.fill(50);
-      }
-    }
-       
+     
     pg.pushMatrix();
     pg.translate(this.location.x, this.location.y, this.location.z + 2);
     pg.rotateX(radians(90));
     pg.scale(6);
     
     if(this.id <= 16){
-       this.s.setFill(color(230));
+      if(this.selected == true){
+       this.s.setFill(color(180,0,0));
+      }
+      else{
+        this.s.setFill(color(230));
+      }
     }
     else{
-       this.s.setFill(color(50));
+      if(this.selected == true){
+       this.s.setFill(color(180,0,0));
+      }
+      else{
+        this.s.setFill(color(50));
+      }     
     }
    
     pg.shape(this.s);
@@ -96,13 +90,6 @@ public class Piece{
   
 public void select(InteractiveFrame f){
   
-    for(int c = 0; c < this.board.size(); c++){
-      if(board.get(c).myPiece != null){
-         board.get(c).myPiece.selected = false;
-      }
-    }
-  
-  
     int i = this.location.i;
     int j = this.location.j;
     
@@ -112,11 +99,14 @@ public void select(InteractiveFrame f){
     this.posibleMoves = new ArrayList<Cell>();
     
     if(this.selected == false){
-       this.selected = true;
       for(int k = 0; k < this.board.size(); k++){
          board.get(k).deactivate();
          board.get(k).depCapture();
+         if(board.get(k).myPiece != null){
+           board.get(k).myPiece.selected = false;
+         }
        }
+       this.selected = true;
        if(this.name.equals("pawn")){
          if(this.id < 16 && pos + 8 < 64){
                if(board.get(pos + 8).isEmpty()){

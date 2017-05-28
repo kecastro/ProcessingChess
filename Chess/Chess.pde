@@ -3,8 +3,9 @@ import remixlab.proscene.*;
 Scene scene, secondScene;
 PGraphics canvas, secondCanvas;  
 InteractiveFrame frame1, frame2, frame3, frame4, frame5, frame6, frame7, auxFrame1, auxFrame2, auxFrame3;
-InteractiveFrame iFrame;
 InteractiveFrame[] board;
+InteractiveFrame[] auxBoard;
+
 
 ArrayList<Cell> cells;
 ArrayList<Piece> pieces;
@@ -15,6 +16,7 @@ void settings() {
 
 void setup() {
   board = new InteractiveFrame[64];
+  auxBoard = new InteractiveFrame[64];
   //Board
   cells = new ArrayList<Cell>();
   
@@ -56,38 +58,49 @@ void setup() {
   
   frame1 = new InteractiveFrame(scene, pieces.get(0),"piecesDrawing");
   frame1.removeBindings();
+  frame1.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   frame1.setClickBinding(pieces.get(0), LEFT,1, "select");
   frame2 = new InteractiveFrame(scene, pieces.get(1),"piecesDrawing");
   frame2.removeBindings();
+  frame2.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   frame2.setClickBinding(pieces.get(1), LEFT,1, "select");
   frame3 = new InteractiveFrame(scene, pieces.get(2), "piecesDrawing");
   frame3.removeBindings();
+  frame3.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   frame3.setClickBinding(pieces.get(2), LEFT,1, "select");
   frame4 = new InteractiveFrame(scene, pieces.get(3), "piecesDrawing");
   frame4.removeBindings();
+  frame4.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   frame4.setClickBinding(pieces.get(3), LEFT,1, "select");
   frame5 = new InteractiveFrame(scene, pieces.get(4), "piecesDrawing");
   frame5.removeBindings();
+  frame5.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   frame5.setClickBinding(pieces.get(4), LEFT,1, "select");
 
 
 
 
-  secondCanvas = createGraphics(width/2, height, P2D);
+  secondCanvas = createGraphics(width/2, height, P3D);
   secondScene = new Scene(this, secondCanvas, width/2, 0);
   secondScene.setVisualHints(0);
-  secondScene.setRadius(200);
+  secondScene.setRadius(150);
   secondScene.showAll();
 
-  /*
+  
+  for (int i = 0; i < board.length; i++) {
+    auxBoard[i] = new InteractiveFrame(secondScene);
+    auxBoard[i].set(board[i]);
+    auxBoard[i].setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
+  }
+  
   auxFrame1 = new InteractiveFrame(secondScene);
   auxFrame1.set(frame1);
-  auxFrame2 = new InteractiveFrame(secondScene, auxFrame1);
+  auxFrame2 = new InteractiveFrame(secondScene);
   auxFrame2.set(frame2);
-  auxFrame3 = new InteractiveFrame(secondScene, auxFrame2);
+  auxFrame3 = new InteractiveFrame(secondScene);
   auxFrame3.set(frame3);
  
-  
+  /*
   iFrame = new InteractiveFrame(secondScene);
   //to not scale the iFrame on mouse hover uncomment:
   iFrame.setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
@@ -99,6 +112,9 @@ void setup() {
 
 void draw() {
   //InteractiveFrame.sync(scene.eyeFrame(), iFrame);
+  for (int i = 0; i < board.length; i++) {
+    InteractiveFrame.sync(board[i], auxBoard[i]);
+  }
   InteractiveFrame.sync(frame1, auxFrame1);
   InteractiveFrame.sync(frame2, auxFrame2);
   InteractiveFrame.sync(frame3, auxFrame3);
