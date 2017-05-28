@@ -6,6 +6,7 @@ public class Cell{
   public int z;
   public Piece myPiece;
   public Piece possiblePiece;
+  public Piece possibleCapture;
   
   boolean empty;
   boolean activated;
@@ -60,6 +61,9 @@ public class Cell{
     pg.pushMatrix();
     pg.translate(this.getX(), this.getY(), this.getZ());
     if(this.activated == true){
+      pg.fill(255,0,255);
+    }
+    else if(this.activated == true){
       pg.fill(255,0,255);
     }
     else{

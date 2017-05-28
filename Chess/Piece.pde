@@ -7,7 +7,14 @@ public class Piece{
   Cell location;
   ArrayList<Cell> posibleMoves;
   ArrayList<Cell> board;
-  
+  //to castle = hacer enroque rey y torre, el rey  no debe estar en jaque 
+  //check   =jaque 
+  //checkmate = jaque mate
+  //stelamate = no esta en jaque el rey pero si se mueve el rey entra en jaque y eso es empate
+  //enpassant =  captura al paso o comer al paso (solo )
+  // verificar si tiene fichas suficientes para hacer hacke si no son tablas
+  // para torneo si hace clic la debe mover, toca cambiar para que solo on hover se muestre los movimiento si hace clic le toca mover esa
+  // tiempo total para torneos 
   
   public Piece(String name, Cell cell, int id, ArrayList<Cell> board){
     this.id = id;
@@ -125,6 +132,10 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                board.get(pos + 8).activate();
+                board.get(pos + 8).possiblePiece = this;
+              }
               break;
             }
          }
@@ -134,6 +145,10 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                board.get(pos + 8).activate();
+                board.get(pos + 8).possiblePiece = this;
+              }
               break;
             }
          }
@@ -143,6 +158,10 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                board.get(pos + 8).activate();
+                board.get(pos + 8).possiblePiece = this;
+              }
               break;
             }
          }
@@ -152,6 +171,11 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                board.get(pos + 8).activate();
+                board.get(pos + 8).possiblePiece = this;
+                board.get(pos + 8).possibleCapture = this;
+              }
               break;
             }
          }
