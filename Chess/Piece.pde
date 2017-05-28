@@ -122,17 +122,38 @@ public void select(InteractiveFrame f){
                  board.get(pos + 8).activate();
                  board.get(pos + 8).possiblePiece = this;
                }
+               else {
+                 if((board.get(pos + 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 8).myPiece.id > 16 && this.id <= 16)){
+                   board.get(pos + 8).possibleCapture = this;
+                   board.get(pos + 8).activate();
+                   board.get(pos + 8).possiblePiece = this;
+                 }
+               }
          }
          if(this.id < 16 && pos + 16 < 64 && (pos >=8 && pos <16 )){
                if(board.get(pos + 16).isEmpty()){
                  board.get(pos + 16).activate();
                  board.get(pos + 16).possiblePiece = this;
                }
+               else {
+                 if((board.get(pos + 16).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 16).myPiece.id > 16 && this.id <= 16)){
+                   board.get(pos + 16).possibleCapture = this;
+                   board.get(pos + 16).activate();
+                   board.get(pos + 16).possiblePiece = this;
+                 }
+               }
          }
          if(this.id > 16 && pos - 8 >= 0){
                if(board.get(pos - 8).isEmpty()){
                  board.get(pos - 8).activate();
                  board.get(pos - 8).possiblePiece = this;
+               }
+               else {
+                 if((board.get(pos - 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 8).myPiece.id > 16 && this.id <= 16)){
+                   board.get(pos - 8).possibleCapture = this;
+                   board.get(pos - 8).activate();
+                   board.get(pos - 8).possiblePiece = this;
+                 }
                }
          }
 
@@ -141,6 +162,13 @@ public void select(InteractiveFrame f){
                  board.get(pos - 16).activate();
                  board.get(pos - 16).possiblePiece = this;
                } 
+               else {
+                 if((board.get(pos - 16).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 16).myPiece.id > 16 && this.id <= 16)){
+                   board.get(pos - 16).possibleCapture = this;
+                   board.get(pos - 16).activate();
+                   board.get(pos - 16).possiblePiece = this;
+                 }
+               }
          }
          
          
@@ -321,6 +349,14 @@ public void select(InteractiveFrame f){
                }
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+               board.get(c).possibleCapture = this;
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c+1)%8==0){
+                 break;
+               }
+              }
               break;
             }
          }
@@ -336,7 +372,14 @@ public void select(InteractiveFrame f){
                
             }
             else{
-              println (c);
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+               board.get(c).possibleCapture = this;
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c)%8==0){
+                 break;
+               }
+              }
               break;
             }
          }
@@ -349,6 +392,14 @@ public void select(InteractiveFrame f){
                }
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+               board.get(c).possibleCapture = this;
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c+1)%8==0){
+                 break;
+               }
+              }
               break;
             }
          }
@@ -361,6 +412,14 @@ public void select(InteractiveFrame f){
                }
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+               board.get(c).possibleCapture = this;
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c)%8==0){
+                 break;
+               }
+              }
               break;
             }
          }
@@ -373,11 +432,25 @@ public void select(InteractiveFrame f){
                 board.get(pos + 8).activate();
                 board.get(pos + 8).possiblePiece = this;
             }
+            else{
+              if((board.get(pos + 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 8).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos + 8).possibleCapture = this;
+               board.get(pos + 8).activate();
+               board.get(pos + 8).possiblePiece = this;
+              }
+            }
           } 
           if ((pos - 8) >= 0){//backward movement 
             if(board.get(pos - 8).isEmpty()){
               board.get(pos - 8).activate();
               board.get(pos - 8).possiblePiece = this;
+            }
+            else{
+              if((board.get(pos - 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 8).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos - 8).possibleCapture = this;
+               board.get(pos - 8).activate();
+               board.get(pos - 8).possiblePiece = this;
+              }
             }
             
           }  
@@ -386,11 +459,25 @@ public void select(InteractiveFrame f){
               board.get(pos + 1).activate();
               board.get(pos + 1).possiblePiece = this;
             }
+            else{
+              if((board.get(pos + 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 1).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos + 1).possibleCapture = this;
+               board.get(pos + 1).activate();
+               board.get(pos + 1).possiblePiece = this;
+              }
+            }
           }
           if ((pos) > 0 && pos%8!=0 ){// right movement
             if(board.get(pos - 1).isEmpty()){
                 board.get(pos - 1).activate();
                 board.get(pos - 1).possiblePiece = this;
+            }
+            else{
+              if((board.get(pos - 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 1).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos - 1).possibleCapture = this;
+               board.get(pos - 1).activate();
+               board.get(pos - 1).possiblePiece = this;
+              }
             }
           }
           if ((pos - 7) > 0 && (pos+1)%8!=0){
@@ -398,11 +485,25 @@ public void select(InteractiveFrame f){
                 board.get(pos - 7).activate();
                 board.get(pos - 7).possiblePiece = this;
             }
+            else{
+              if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos - 7).possibleCapture = this;
+               board.get(pos - 7).activate();
+               board.get(pos - 7).possiblePiece = this;
+              }
+            }
           } 
           if ((pos - 9) >= 0 && (pos)%8!=0){
             if(board.get(pos - 9).isEmpty()){ //right backwards diagonal movement
               board.get(pos - 9).activate();
               board.get(pos - 9).possiblePiece = this;
+            }
+            else{
+              if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos - 9).possibleCapture = this;
+               board.get(pos - 9).activate();
+               board.get(pos - 9).possiblePiece = this;
+              }
             }
             
           } 
@@ -411,15 +512,29 @@ public void select(InteractiveFrame f){
               board.get(pos +9).activate();
               board.get(pos +9).possiblePiece = this;
             }
+            else{
+              if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos + 9).possibleCapture = this;
+               board.get(pos + 9).activate();
+               board.get(pos + 9).possiblePiece = this;
+              }
+            }
           } 
           if ((pos + 7) < 64 && (pos)%8!=0){ //right  forwards diagonal Movement
             if(board.get(pos + 7).isEmpty()){
                 board.get(pos + 7).activate();
                 board.get(pos + 7).possiblePiece = this;
             }
+            else{
+              if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
+               board.get(pos + 7).possibleCapture = this;
+               board.get(pos + 7).activate();
+               board.get(pos + 7).possiblePiece = this;
+              }
+            }
           } 
 
-     }
+       }
        else if(this.name.equals("queen")){
           for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
             if(board.get(c).isEmpty()){
@@ -428,8 +543,17 @@ public void select(InteractiveFrame f){
                if ((c+1)%8==0){
                  break;
                }
+               
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+                 if ((c+1)%8==0){
+                   break;
+                 }
+              }
               break;
             }
          }
@@ -443,6 +567,14 @@ public void select(InteractiveFrame f){
                
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+                 if ((c)%8==0){
+                   break;
+                 }
+              }
               break;
             }
          }
@@ -455,6 +587,14 @@ public void select(InteractiveFrame f){
                }
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+                 if ((c+1)%8==0){
+                   break;
+                 }
+              }
               break;
             }
          }
@@ -467,6 +607,14 @@ public void select(InteractiveFrame f){
                }
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+                 if ((c)%8==0){
+                   break;
+                 }
+              }
               break;
             }
          }
@@ -476,6 +624,11 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+              }
               break;
             }
          }
@@ -485,6 +638,11 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+              }
               break;
             }
          }
@@ -494,6 +652,11 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+              }
               break;
             }
          }
@@ -503,6 +666,11 @@ public void select(InteractiveFrame f){
                board.get(c).possiblePiece = this;
             }
             else{
+              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+                 board.get(c).possibleCapture = this;
+                 board.get(c).activate();
+                 board.get(c).possiblePiece = this;
+              }
               break;
             }
          }
