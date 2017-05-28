@@ -2,4 +2,4 @@
 
 https://github.com/scenevr/chess
 
-# under MIT licences
+# under MIT lisence
