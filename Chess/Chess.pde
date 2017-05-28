@@ -14,7 +14,6 @@ void settings() {
 }
 
 void setup() {
-  
   board = new InteractiveFrame[64];
   //Board
   cells = new ArrayList<Cell>();
@@ -35,12 +34,14 @@ void setup() {
   //Pieces
   pieces.add( new Piece("rook", cells.get(0), 1, cells) );
   cells.get(0).addPiece(pieces.get(0));
+  pieces.add( new Piece("horse", cells.get(1), 2, cells) );
+  cells.get(1).addPiece(pieces.get(1));
   pieces.add( new Piece("pawn", cells.get(8), 9, cells) ) ;
-  cells.get(8).addPiece(pieces.get(1)); //Revisar cuando se agreguen todas las fichas
+  cells.get(8).addPiece(pieces.get(2));
   pieces.add( new Piece("pawn", cells.get(9), 10, cells) );
-  cells.get(9).addPiece(pieces.get(2));
+  cells.get(9).addPiece(pieces.get(3));
   pieces.add( new Piece("pawn", cells.get(10), 11, cells) );
-  cells.get(10).addPiece(pieces.get(3));
+  cells.get(10).addPiece(pieces.get(4));
   
   canvas = createGraphics(width/2, height, P3D);
   scene = new Scene(this, canvas);
@@ -55,7 +56,7 @@ void setup() {
   frame1 = new InteractiveFrame(scene, pieces.get(0),"piecesDrawing");
   frame1.removeBindings();
   frame1.setClickBinding(pieces.get(0), LEFT,1, "select");
-  frame2 = new InteractiveFrame(scene, pieces.get(1), "piecesDrawing");
+  frame2 = new InteractiveFrame(scene, pieces.get(1),"piecesDrawing");
   frame2.removeBindings();
   frame2.setClickBinding(pieces.get(1), LEFT,1, "select");
   frame3 = new InteractiveFrame(scene, pieces.get(2), "piecesDrawing");
@@ -64,6 +65,9 @@ void setup() {
   frame4 = new InteractiveFrame(scene, pieces.get(3), "piecesDrawing");
   frame4.removeBindings();
   frame4.setClickBinding(pieces.get(3), LEFT,1, "select");
+  frame5 = new InteractiveFrame(scene, pieces.get(4), "piecesDrawing");
+  frame5.removeBindings();
+  frame5.setClickBinding(pieces.get(4), LEFT,1, "select");
 
 
 

@@ -17,10 +17,7 @@ public class Piece{
     this.location = cell;
     this.board = board;
     if (this.name.equals("rook")){
-      this.s=loadShape("models/rook.obj");
-    }
-    else if (this.name.equals("rook")){
-      this.s=loadShape("models/rook.obj");
+      this.s=loadShape("data/rook.obj");
     }
   }
   
@@ -58,18 +55,14 @@ public class Piece{
     }
        
     pg.pushMatrix();
-    //float sinTheta=sin(45);
-    //float cosTheta = cos(45);
-    //float xposition = this.location.y * cosTheta - this.location.z * sinTheta;
-    //float yposition = this.location.z * cosTheta + this.location.y * sinTheta;
-    //pg.translate(this.location.x, this.location.y, this.location.z + 5);
-    pg.translate(this.location.x, this.location.y, this.location.z + 5);
+    pg.translate(this.location.x, this.location.y, this.location.z + 10);
     
      //Torre
     if(this.id == 1 || this.id == 8 || this.id == 17 || this.id == 24){
-      pg.fill(0,0,200);
-      //this.s.translate(0, 0, 0); 
       pg.shape(this.s, 0, 0, 10,10);
+    }
+    else if(this.id == 2 || this.id == 7 || this.id == 18 || this.id == 23){
+      pg.sphere(10);
     }
     else {
       pg.sphere(10);
@@ -137,6 +130,56 @@ public void select(InteractiveFrame f){
             else{
               break;
             }
+         }
+       }
+       else if(this.name.equals("horse")){
+         if(pos+10 < 64 && pos < row*8 - 2 && row < 8){
+            if(board.get(pos + 10).isEmpty()){
+              board.get(pos + 10).activate();
+              board.get(pos + 10).possiblePiece = this;
+            }      
+         }
+         if(pos+17 < 64 && pos < row*8 - 1 && row < 7){
+           if(board.get(pos + 17).isEmpty()){
+            board.get(pos + 17).activate();
+            board.get(pos + 17).possiblePiece = this;
+           }
+         }
+         if(pos+15 < 64 && pos > (row - 1) * 8 && row < 7){
+           if(board.get(pos + 15).isEmpty()){
+            board.get(pos + 15).activate();
+            board.get(pos + 15).possiblePiece = this;
+           }
+         }
+         if(pos+6 < 64 && pos > ((row - 1) * 8) + 1 && row < 8){
+           if(board.get(pos + 6).isEmpty()){
+            board.get(pos + 6).activate();
+            board.get(pos + 6).possiblePiece = this;
+           }
+         }
+         if(pos-6 >= 0 && pos < row*8 - 2 && row > 1){
+           if(board.get(pos - 6).isEmpty()){
+            board.get(pos - 6).activate();
+            board.get(pos - 6).possiblePiece = this;
+           }
+         }
+         if(pos-15 >= 0 && pos < row*8 - 1 && row > 2){
+           if(board.get(pos - 15).isEmpty()){
+            board.get(pos - 15).activate();
+            board.get(pos - 15).possiblePiece = this;
+           }
+         }
+         if(pos-17 >= 0 && pos > (row - 1) * 8 && row > 2){
+           if(board.get(pos - 17).isEmpty()){
+            board.get(pos - 17).activate();
+            board.get(pos - 17).possiblePiece = this;
+           }
+         }
+         if(pos-10 >= 0 && pos > (row - 1) * 8 + 1 && row > 1){
+           if(board.get(pos - 10).isEmpty()){
+            board.get(pos - 10).activate();
+            board.get(pos - 10).possiblePiece = this;
+           }
          }
        }
     }
