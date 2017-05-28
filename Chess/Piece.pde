@@ -16,8 +16,14 @@ public class Piece{
     this.name = name;
     this.location = cell;
     this.board = board;
-    if (this.name.equals("rook")){
+    if(this.name.equals("rook")){
       this.s=loadShape("data/rook.obj");
+    }
+    else if(this.name.equals("horse")){
+      this.s=loadShape("data/knight.obj");
+    }
+    else{
+      this.s=loadShape("data/pawn.obj");
     }
   }
   
@@ -55,18 +61,19 @@ public class Piece{
     }
        
     pg.pushMatrix();
-    pg.translate(this.location.x, this.location.y, this.location.z + 10);
+    pg.translate(this.location.x, this.location.y, this.location.z + 2);
+    pg.rotateX(radians(90));
+    pg.scale(6);
     
-     //Torre
-    if(this.id == 1 || this.id == 8 || this.id == 17 || this.id == 24){
-      pg.shape(this.s, 0, 0, 10,10);
+    if(this.id <= 16){
+       this.s.setFill(color(230));
     }
-    else if(this.id == 2 || this.id == 7 || this.id == 18 || this.id == 23){
-      pg.sphere(10);
+    else{
+       this.s.setFill(color(50));
     }
-    else {
-      pg.sphere(10);
-    }
+   
+    pg.shape(this.s);
+
     pg.popMatrix();
  
   }
