@@ -41,8 +41,8 @@ void setup() {
   cells.get(8).addPiece(pieces.get(2));
   pieces.add( new Piece("king", cells.get(9), 10, cells) );
   cells.get(9).addPiece(pieces.get(3));
-  pieces.add( new Piece("bishop", cells.get(10), 11, cells) );
-  cells.get(10).addPiece(pieces.get(4));
+  pieces.add( new Piece("bishop", cells.get(28), 29, cells) );
+  cells.get(29).addPiece(pieces.get(4));
   
   canvas = createGraphics(width/2, height, P3D);
   scene = new Scene(this, canvas);

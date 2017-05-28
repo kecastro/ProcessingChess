@@ -212,7 +212,7 @@ public void select(InteractiveFrame f){
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
-               if ((c)%8==0){
+               if ((c+1)%8==0){
                  break;
                }
             }
@@ -224,12 +224,15 @@ public void select(InteractiveFrame f){
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
+               println (pos);
+               println (c);
+               if ((c)%8==0){
                  break;
                }
                
             }
             else{
+              println (c);
               break;
             }
          }
@@ -292,7 +295,7 @@ public void select(InteractiveFrame f){
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
-               if ((c)%8==0){
+               if ((c+1)%8==0){
                  break;
                }
             }
@@ -304,7 +307,7 @@ public void select(InteractiveFrame f){
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
+               if ((c)%8==0){
                  break;
                }
                
