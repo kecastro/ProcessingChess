@@ -27,11 +27,14 @@ void setup() {
   int y = -70;
   int z = 0;
   
+  int id = 0;
   for(int i = 0; i < 8; i++){
+    id++;
     int x = -70;
     for(int j = 0; j < 8; j++){
-      cells.add(new Cell(i, j, x, y, z));
+      cells.add(new Cell(i, j, x, y, z, id));
       x += 20;
+      id++;
     }
     y += 20;
   }
@@ -135,7 +138,7 @@ void setup() {
   secondCanvas = createGraphics(width/2, height, P3D);
   secondScene = new Scene(this, secondCanvas, width/2, 0);
   secondScene.setVisualHints(0);
-  secondScene.setRadius(150);
+  secondScene.setRadius(90);
   secondScene.showAll();
 
   
@@ -178,7 +181,7 @@ void draw() {
   scene.display();
   //second screen
   secondScene.beginDraw();
-  secondCanvas.background(29, 153, 243);
+  secondCanvas.background(50, 80, 140);
   secondScene.pg().fill(255, 0, 255, 125);
   secondScene.drawFrames();
   secondScene.endDraw();

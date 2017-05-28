@@ -56,16 +56,12 @@ public class Piece{
     return capture;
   }
   
-  public void minimap(){
-    println("minimap");
-  }
-  
   public void piecesDrawing(PGraphics pg) {  
     pg.noStroke();
     
      
     pg.pushMatrix();
-    pg.translate(this.location.x, this.location.y, this.location.z + 2);
+    pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
     pg.rotateX(radians(90));
     pg.scale(6);
     
