@@ -122,8 +122,28 @@ public void select(InteractiveFrame f){
                  board.get(pos + 8).activate();
                  board.get(pos + 8).possiblePiece = this;
                }
-           //this.posibleMoves.add();
          }
+         if(this.id < 16 && pos + 16 < 64 && (pos >=8 && pos <16 )){
+               if(board.get(pos + 16).isEmpty()){
+                 board.get(pos + 16).activate();
+                 board.get(pos + 16).possiblePiece = this;
+               }
+         }
+         if(this.id > 16 && pos - 8 >= 0){
+               if(board.get(pos - 8).isEmpty()){
+                 board.get(pos - 8).activate();
+                 board.get(pos - 8).possiblePiece = this;
+               }
+         }
+
+         if(this.id < 16 && pos - 16 < 64 && (pos >= 48 && pos < 54 )){
+               if(board.get(pos - 16).isEmpty()){
+                 board.get(pos - 16).activate();
+                 board.get(pos - 16).possiblePiece = this;
+               } 
+         }
+         
+         
        } 
        else if(this.name.equals("rook")){
          for(int c = pos + 8; c < 64; c += 8){ //Movement foward
