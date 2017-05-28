@@ -37,11 +37,11 @@ void setup() {
 
   pieces.add( new Piece("horse", cells.get(1), 2, cells) );
   cells.get(1).addPiece(pieces.get(1));
-  pieces.add( new Piece("pawn", cells.get(8), 9, cells) ) ;
+  pieces.add( new Piece("queen", cells.get(8), 9, cells) ) ;
   cells.get(8).addPiece(pieces.get(2));
-  pieces.add( new Piece("pawn", cells.get(9), 10, cells) );
+  pieces.add( new Piece("king", cells.get(9), 10, cells) );
   cells.get(9).addPiece(pieces.get(3));
-  pieces.add( new Piece("pawn", cells.get(10), 11, cells) );
+  pieces.add( new Piece("bishop", cells.get(10), 11, cells) );
   cells.get(10).addPiece(pieces.get(4));
   
   canvas = createGraphics(width/2, height, P3D);
@@ -68,7 +68,7 @@ void setup() {
   frame4.setClickBinding(pieces.get(3), LEFT,1, "select");
   frame5 = new InteractiveFrame(scene, pieces.get(4), "piecesDrawing");
   frame5.removeBindings();
-  frame5.setClickBinding(pieces.get(3), LEFT,1, "select");
+  frame5.setClickBinding(pieces.get(4), LEFT,1, "select");
 
 
 

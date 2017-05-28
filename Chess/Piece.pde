@@ -29,7 +29,7 @@ public class Piece{
       this.s=loadShape("data/queen.obj");
     }
     else if(this.name.equals("king")){
-      this.s=loadShape("data/bishop.obj");
+      this.s=loadShape("data/king.obj");
     }
     else{
       this.s=loadShape("data/pawn.obj");
@@ -260,22 +260,32 @@ public void select(InteractiveFrame f){
          
        }
        else if(this.name.equals("king")){
-          if ((pos + 8) < 64 &&  board.get(pos + 8).isEmpty()){//Movement foward
-            board.get(pos + 8).activate();
-            board.get(pos + 8).possiblePiece = this;
+          if ((pos + 8) < 64 ){//Movement foward
+            if(board.get(pos + 8).isEmpty()){ 
+                board.get(pos + 8).activate();
+                board.get(pos + 8).possiblePiece = this;
+            }
           } 
-          else if ((pos - 8) >= 0 &&  board.get(pos - 8).isEmpty()){//Movement backward
-            board.get(pos - 8).activate();
-            board.get(pos - 8).possiblePiece = this;
+          if ((pos - 8) >= 0){//Movement backward
+            if(board.get(pos - 8).isEmpty()){
+              board.get(pos - 8).activate();
+              board.get(pos - 8).possiblePiece = this;
+            }
+            
           } 
-          else if ((pos - 1) >= 0 &&  board.get(pos - 1).isEmpty() && pos%8 !=0){//Movement right 
-            board.get(pos - 8).activate();
-            board.get(pos - 8).possiblePiece = this;
+          if ((pos - 1) >= (row - 1) * 8){//Movement left 
+            if(board.get(pos - 1).isEmpty()){
+              board.get(pos - 1).activate();
+              board.get(pos - 1).possiblePiece = this;
+            }
           } 
-          else if ((pos + 1) >= 0 &&  board.get(pos - 1).isEmpty() && (pos+1)%8 !=0){//Movement right 
-            board.get(pos - 8).activate();
-            board.get(pos - 8).possiblePiece = this;
+          if ((pos + 1) < row*8 ){//Movement right 
+            if(board.get(pos + 1).isEmpty()){
+                board.get(pos + 1).activate();
+                board.get(pos + 1).possiblePiece = this;
+            }
           } 
+          //Faltan diagonales
        }
        else if(this.name.equals("queen")){
           for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//Movement backward diagonal left
