@@ -39,10 +39,10 @@ void setup() {
   cells.get(1).addPiece(pieces.get(1));
   pieces.add( new Piece("queen", cells.get(8), 9, cells) ) ;
   cells.get(8).addPiece(pieces.get(2));
-  pieces.add( new Piece("king", cells.get(9), 10, cells) );
-  cells.get(9).addPiece(pieces.get(3));
+  pieces.add( new Piece("king", cells.get(12), 13, cells) );
+  cells.get(12).addPiece(pieces.get(3));
   pieces.add( new Piece("bishop", cells.get(28), 29, cells) );
-  cells.get(29).addPiece(pieces.get(4));
+  cells.get(28).addPiece(pieces.get(4));
   
   canvas = createGraphics(width/2, height, P3D);
   scene = new Scene(this, canvas);

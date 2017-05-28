@@ -208,7 +208,7 @@ public void select(InteractiveFrame f){
        }
        else if(this.name.equals("bishop")){
          
-         for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//Movement backward diagonal left
+         for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -220,7 +220,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //Movement backward digonal right
+         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -236,7 +236,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //Movement forward diagonal left
+         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -248,7 +248,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //Movement forward diagonal right
+         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -263,35 +263,61 @@ public void select(InteractiveFrame f){
          
        }
        else if(this.name.equals("king")){
-          if ((pos + 8) < 64 ){//Movement foward
+
+          if ((pos + 8) < 64 ){//fowards movement 
             if(board.get(pos + 8).isEmpty()){ 
                 board.get(pos + 8).activate();
                 board.get(pos + 8).possiblePiece = this;
             }
           } 
-          if ((pos - 8) >= 0){//Movement backward
+          if ((pos - 8) >= 0){//backward movement 
             if(board.get(pos - 8).isEmpty()){
               board.get(pos - 8).activate();
               board.get(pos - 8).possiblePiece = this;
             }
             
-          } 
-          if ((pos - 1) >= (row - 1) * 8){//Movement left 
-            if(board.get(pos - 1).isEmpty()){
-              board.get(pos - 1).activate();
-              board.get(pos - 1).possiblePiece = this;
-            }
-          } 
-          if ((pos + 1) < row*8 ){//Movement right 
+          }  
+          if (pos < 64 && (pos+1)%8!=0){//left movement  
             if(board.get(pos + 1).isEmpty()){
-                board.get(pos + 1).activate();
-                board.get(pos + 1).possiblePiece = this;
+              board.get(pos + 1).activate();
+              board.get(pos + 1).possiblePiece = this;
+            }
+          }
+          if ((pos) > 0 && pos%8!=0 ){// right movement
+            if(board.get(pos - 1).isEmpty()){
+                board.get(pos - 1).activate();
+                board.get(pos - 1).possiblePiece = this;
+            }
+          }
+          if ((pos - 7) > 0 && (pos+1)%8!=0){
+            if(board.get(pos - 7).isEmpty()){ //left  backwards diagonal movement
+                board.get(pos - 7).activate();
+                board.get(pos - 7).possiblePiece = this;
             }
           } 
-          //Faltan diagonales
-       }
+          if ((pos - 9) >= 0 && (pos)%8!=0){
+            if(board.get(pos - 9).isEmpty()){ //right backwards diagonal movement
+              board.get(pos - 9).activate();
+              board.get(pos - 9).possiblePiece = this;
+            }
+            
+          } 
+          if ((pos + 9) < 64 && (pos+1)%8!=0){//left forward diagonal movement
+            if(board.get(pos + 9).isEmpty()){
+              board.get(pos +9).activate();
+              board.get(pos +9).possiblePiece = this;
+            }
+          } 
+          if ((pos + 7) < 64 && (pos)%8!=0){ //right  forwards diagonal Movement
+            if(board.get(pos + 7).isEmpty()){
+                board.get(pos + 7).activate();
+                board.get(pos + 7).possiblePiece = this;
+            }
+          } 
+
+     }
        else if(this.name.equals("queen")){
-          for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//Movement backward diagonal left
+          for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -303,7 +329,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //Movement backward digonal right
+         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement   
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -316,7 +342,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //Movement forward diagonal left
+         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -328,7 +354,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //Movement forward diagonal right
+         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -340,7 +366,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 8; c < 64; c += 8){ //Movement foward
+         for(int c = pos + 8; c < 64; c += 8){ //fowards movement 
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -349,7 +375,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos - 8; c >= 0; c -= 8){ //Movement backward
+         for(int c = pos - 8; c >= 0; c -= 8){ //backward movement 
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -358,7 +384,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos + 1; c < row * 8 ; c++){ //Movement rigth
+         for(int c = pos + 1; c < row * 8 ; c++){ //rigth movement 
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -367,7 +393,7 @@ public void select(InteractiveFrame f){
               break;
             }
          }
-         for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ //Movement left
+         for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ // left movement
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
