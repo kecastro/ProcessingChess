@@ -79,6 +79,14 @@ public class Piece{
   }
   
 public void select(InteractiveFrame f){
+  
+    for(int c = 0; c < this.board.size(); c++){
+      if(board.get(c).myPiece != null){
+         board.get(c).myPiece.selected = false;
+      }
+    }
+  
+  
     int i = this.location.i;
     int j = this.location.j;
     
