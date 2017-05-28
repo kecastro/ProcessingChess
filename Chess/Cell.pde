@@ -10,10 +10,12 @@ public class Cell{
   
   boolean empty;
   boolean activated;
+  boolean pCapture;
   
   public Cell(int i, int j, int x, int y, int z){
     this.empty = true;
     this.activated = false;
+    this.pCapture = false;
     this.myPiece = null;
     this.possiblePiece = null;
     this.possibleCapture = null;
@@ -30,6 +32,12 @@ public class Cell{
   
   public void deactivate(){
     this.activated = false;
+  }
+  public void pCapture(){
+    this.pCapture = true;
+  }
+  public void depCapture(){
+    this.pCapture = false;
   }
   
   public void addPiece(Piece p){
@@ -62,7 +70,7 @@ public class Cell{
     pg.pushMatrix();
     pg.translate(this.getX(), this.getY(), this.getZ());
     if(this.activated == true){
-      if (this.possibleCapture!=null)
+      if (this.pCapture==true)
         pg.fill(0,255,0);
       else
         pg.fill(255,0,255);
@@ -77,6 +85,7 @@ public class Cell{
  public void moveHere(InteractiveFrame f){
    if(this.activated == true){
       this.possiblePiece.location.empty = true;
+      this.possibleCapture = null;
       this.empty = false;
       this.myPiece = this.possiblePiece;
       this.myPiece.location = this;
