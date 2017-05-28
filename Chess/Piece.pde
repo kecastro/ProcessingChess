@@ -19,8 +19,8 @@ public class Piece{
     if (this.name.equals("rook")){
       this.s=loadShape("models/rook.obj");
     }
-    else if (this.name.equals("rook")){
-      this.s=loadShape("models/rook.obj");
+    else if (this.name.equals("bishop")){
+      this.s=loadShape("models/bishop.obj");
     }
   }
   
@@ -58,17 +58,17 @@ public class Piece{
     }
        
     pg.pushMatrix();
-    //float sinTheta=sin(45);
-    //float cosTheta = cos(45);
-    //float xposition = this.location.y * cosTheta - this.location.z * sinTheta;
-    //float yposition = this.location.z * cosTheta + this.location.y * sinTheta;
-    //pg.translate(this.location.x, this.location.y, this.location.z + 5);
+
     pg.translate(this.location.x, this.location.y, this.location.z + 5);
     
      //Torre
     if(this.id == 1 || this.id == 8 || this.id == 17 || this.id == 24){
       pg.fill(0,0,200);
       //this.s.translate(0, 0, 0); 
+      pg.shape(this.s, 0, 0, 10,10);
+    }
+    else if (this.id == 3 || this.id == 5 || this.id == 20 || this.id == 21){
+      pg.fill(0,0,200);
       pg.shape(this.s, 0, 0, 10,10);
     }
     else {
@@ -102,7 +102,7 @@ public void select(InteractiveFrame f){
          }
        } 
        else if(this.name.equals("rook")){
-         for(int c = pos + 8; c < 64; c += 8){ //Movement foward
+         for(int c = pos + 8; c < 64; c += 8){ //Movement forward
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
@@ -139,7 +139,98 @@ public void select(InteractiveFrame f){
             }
          }
        }
+       else if(this.name.equals("bishop")){
+         
+         for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//Movement backward diagonal left
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c)%8==0){
+                 break;
+               }
+            }
+            else{
+              break;
+            }
+         }
+         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //Movement backward digonal right
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c+1)%8==0){
+                 break;
+               }
+               
+            }
+            else{
+              break;
+            }
+         }
+         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //Movement forward diagonal left
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c+1)%8==0){
+                 break;
+               }
+            }
+            else{
+              break;
+            }
+         }
+         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //Movement forward diagonal right
+            if(board.get(c).isEmpty()){
+               board.get(c).activate();
+               board.get(c).possiblePiece = this;
+               if ((c)%8==0){
+                 break;
+               }
+            }
+            else{
+              break;
+            }
+         }
+         
+       }
+       else if(this.name.equals("king")){
+          if ((pos + 8) < 64 &&  board.get(pos + 8).isEmpty()){//Movement foward
+            board.get(pos + 8).activate();
+            board.get(pos + 8).possiblePiece = this;
+          } 
+          else if ((pos - 8) >= 0 &&  board.get(pos - 8).isEmpty()){//Movement backward
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+          else if ((pos - 1) >= 0 &&  board.get(pos - 1).isEmpty() && pos%8 !=0){//Movement right 
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+          else if ((pos + 1) >= 0 &&  board.get(pos - 1).isEmpty() && (pos+1)%8 !=0){//Movement right 
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+       }
+       else if(this.name.equals("queen")){
+          if ((pos + 8) < 64 &&  board.get(pos + 8).isEmpty()){//Movement foward
+            board.get(pos + 8).activate();
+            board.get(pos + 8).possiblePiece = this;
+          } 
+          else if ((pos - 8) >= 0 &&  board.get(pos - 8).isEmpty()){//Movement backward
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+          else if ((pos - 1) >= 0 &&  board.get(pos - 1).isEmpty() && pos%8 !=0){//Movement right 
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+          else if ((pos + 1) >= 0 &&  board.get(pos - 1).isEmpty() && (pos+1)%8 !=0){//Movement right 
+            board.get(pos - 8).activate();
+            board.get(pos - 8).possiblePiece = this;
+          } 
+       }
+       
     }
+    
     else{
       this.selected = false;
       for(int c = 0; c < this.board.size(); c++){
