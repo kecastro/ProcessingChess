@@ -24,11 +24,11 @@ void setup() {
   //Board
   cells = new ArrayList<Cell>();
   
-  int y = -80;
+  int y = -70;
   int z = 0;
   
   for(int i = 0; i < 8; i++){
-    int x = -80;
+    int x = -70;
     for(int j = 0; j < 8; j++){
       cells.add(new Cell(i, j, x, y, z));
       x += 20;
