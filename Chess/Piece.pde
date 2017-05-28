@@ -56,6 +56,10 @@ public class Piece{
     return capture;
   }
   
+  public void minimap(){
+    println("minimap");
+  }
+  
   public void piecesDrawing(PGraphics pg) {  
     pg.noStroke();
     
@@ -65,20 +69,27 @@ public class Piece{
     pg.rotateX(radians(90));
     pg.scale(6);
     
+    this.s.setStroke(true);
+    this.s.setStrokeWeight(0.3);
+    
     if(this.id <= 16){
       if(this.selected == true){
        this.s.setFill(color(180,0,0));
+       this.s.setStroke(color(0));
       }
       else{
         this.s.setFill(color(50));
+        this.s.setStroke(color(255));
       }
     }
     else{
       if(this.selected == true){
        this.s.setFill(color(180,0,0));
+       this.s.setStroke(color(0));
       }
       else{
         this.s.setFill(color(230));
+        this.s.setStroke(color(0));
       }     
     }
    

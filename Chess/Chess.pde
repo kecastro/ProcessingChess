@@ -110,6 +110,10 @@ void setup() {
 
   canvas = createGraphics(width/2, height, P3D);
   scene = new Scene(this, canvas);
+  scene.setAxesVisualHint(false); 
+  scene.setGridVisualHint(false); 
+  scene.camera().setPosition(0, 150, 200);
+  scene.camera().lookAt(0, 0, 0); 
    
   for (int i = 0; i < pieces.size(); i++){
     piecesFrames[i] = new InteractiveFrame(scene, pieces.get(i),"piecesDrawing");
@@ -144,6 +148,7 @@ void setup() {
   for (int i = 0; i < pieces.size(); i++){
     auxPiecesFrames[i] =  new InteractiveFrame(secondScene);
     auxPiecesFrames[i].set(piecesFrames[i]);
+    auxPiecesFrames[i].setHighlightingMode(InteractiveFrame.HighlightingMode.NONE);
   }
 
  
