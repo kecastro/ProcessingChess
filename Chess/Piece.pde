@@ -93,6 +93,12 @@ public class Piece{
     pg.pushMatrix();
     pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
     pg.rotateX(radians(90));
+    if(this.id <= 16){
+      pg.rotateY(radians(-85));
+    }
+    else{
+      pg.rotateY(radians(95));
+    }   
     pg.scale(6);
     
     this.s.setStroke(true);
