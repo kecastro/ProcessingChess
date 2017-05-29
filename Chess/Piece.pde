@@ -61,24 +61,31 @@ public class Piece{
     
      
     pg.pushMatrix();
-    pg.translate(this.location.x, this.location.y, this.location.z + 2);
+    pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
     pg.rotateX(radians(90));
     pg.scale(6);
+    
+    this.s.setStroke(true);
+    this.s.setStrokeWeight(0.3);
     
     if(this.id <= 16){
       if(this.selected == true){
        this.s.setFill(color(180,0,0));
+       this.s.setStroke(color(0));
       }
       else{
         this.s.setFill(color(50));
+        this.s.setStroke(color(255));
       }
     }
     else{
       if(this.selected == true){
        this.s.setFill(color(180,0,0));
+       this.s.setStroke(color(0));
       }
       else{
         this.s.setFill(color(230));
+        this.s.setStroke(color(0));
       }     
     }
    

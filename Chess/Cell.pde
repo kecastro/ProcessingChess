@@ -4,6 +4,7 @@ public class Cell{
   public int x;
   public int y;
   public int z;
+  int id;
   public Piece myPiece;
   public Piece possiblePiece;
   public Piece possibleCapture;
@@ -12,7 +13,7 @@ public class Cell{
   boolean activated;
   boolean pCapture;
   
-  public Cell(int i, int j, int x, int y, int z){
+  public Cell(int i, int j, int x, int y, int z, int id){
     this.empty = true;
     this.activated = false;
     this.pCapture = false;
@@ -24,6 +25,7 @@ public class Cell{
     this.z = z;
     this.i = i;
     this.j = j;
+    this.id = id;
   }
   
   public void activate(){
@@ -76,7 +78,12 @@ public class Cell{
         pg.fill(255,0,255);
     }
     else{
-      pg.fill(255);
+      if(this.id % 2 == 0){
+        pg.fill(50);
+      }
+      else{
+        pg.fill(200);
+      }
     }
     pg.box(20, 20, 5);
     pg.popMatrix();
