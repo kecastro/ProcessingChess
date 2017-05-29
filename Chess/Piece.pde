@@ -126,14 +126,14 @@ public class Piece{
   }
   
 public void select(InteractiveFrame f){
-    
+    //TODO: delete the next two lines
     int i = this.location.i;
     int j = this.location.j;
     
     int pos = board.indexOf(this.location);
     int row = (pos/8) + 1;
     
-    this.posibleMoves = new ArrayList<Cell>();
+    //this.posibleMoves = new ArrayList<Cell>();
     
     
     
@@ -147,644 +147,25 @@ public void select(InteractiveFrame f){
        }
        this.selected = true;
        if(this.name.equals("pawn")){
-         
-         if(this.id <= 16 && (pos + 8) < 64){
-
-               if(board.get(pos + 8).isEmpty()){
-                 board.get(pos + 8).activate();
-                 board.get(pos + 8).possiblePiece = this;
-               }                 
-               //Capture left
-               if(!board.get(pos + 9).isEmpty()){ 
-                 if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos + 9).possibleCapture = this;
-                   board.get(pos + 9).pCapture();
-                   board.get(pos + 9).activate();
-                   board.get(pos + 9).possiblePiece = this;
-                 }
-               }
-               //Capture right
-               if(!board.get(pos + 7).isEmpty()){
-                 if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos + 7).possibleCapture = this;
-                   board.get(pos + 7).pCapture();
-                   board.get(pos + 7).activate();
-                   board.get(pos + 7).possiblePiece = this;
-                 }
-               }
-         }
-         if(this.id <= 16 && (pos + 16) < 64 && (pos >=8 && pos <=16 )){
-               if(board.get(pos + 16).isEmpty() && board.get(pos + 8).isEmpty()){
-                 board.get(pos + 16).activate();
-                 board.get(pos + 16).possiblePiece = this;
-               }
-               //Capture left
-               if(!board.get(pos + 9).isEmpty()){
-                 if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos + 9).possibleCapture = this;
-                   board.get(pos + 9).pCapture();
-                   board.get(pos + 9).activate();
-                   board.get(pos + 9).possiblePiece = this;
-                 }
-               }
-               //Capture right
-               if(!board.get(pos + 7).isEmpty()){
-                 if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos + 7).possibleCapture = this;
-                   board.get(pos + 7).pCapture();
-                   board.get(pos + 7).activate();
-                   board.get(pos + 7).possiblePiece = this;
-                 }
-               }
-         }
-         if(this.id > 16 && pos - 8 >= 0){
-               if(board.get(pos - 8).isEmpty()){
-                 board.get(pos - 8).activate();
-                 board.get(pos - 8).possiblePiece = this;
-               }
-               //Capture left
-               if(!board.get(pos - 9).isEmpty()){
-                 if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos - 9).possibleCapture = this;
-                   board.get(pos - 9).pCapture();
-                   board.get(pos - 9).activate();
-                   board.get(pos - 9).possiblePiece = this;
-                 }
-               }
-               //Capture right
-               if(!board.get(pos - 7).isEmpty()){
-                 if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos - 7).possibleCapture = this;
-                   board.get(pos - 7).pCapture();
-                   board.get(pos - 7).activate();
-                   board.get(pos - 7).possiblePiece = this;
-                 }
-               }
-         }
-
-         if(this.id > 16 && pos - 16 > 0 && (pos >= 48 && pos <= 55 )){
-               if(board.get(pos - 16).isEmpty() && board.get(pos - 8).isEmpty() ){
-                 board.get(pos - 16).activate();
-                 board.get(pos - 16).possiblePiece = this;
-               } 
-               //Capture left
-               if(!board.get(pos - 9).isEmpty()){
-                 if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos - 9).possibleCapture = this;
-                   board.get(pos - 9).pCapture();
-                   board.get(pos - 9).activate();
-                   board.get(pos - 9).possiblePiece = this;
-                 }
-               }
-               //Capture right
-               if(!board.get(pos - 7).isEmpty()){
-                 if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
-                   board.get(pos - 7).possibleCapture = this;
-                   board.get(pos - 7).pCapture();
-                   board.get(pos - 7).activate();
-                   board.get(pos - 7).possiblePiece = this;
-                 }
-               }
-         }
-         
-         
+         this.pawnMovement();
        } 
+       
        else if(this.name.equals("rook")){
-         for(int c = pos + 8; c < 64; c += 8){ //Movement foward
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(c).possibleCapture = this;
-                board.get(c).pCapture();
-                board.get(c).activate();
-                board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos - 8; c >= 0; c -= 8){ //Movement backward
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(c).possibleCapture = this;
-                board.get(c).pCapture();
-                board.get(c).activate();
-                board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos + 1; c < row * 8 ; c++){ //Movement rigth
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(c).possibleCapture = this;
-                board.get(c).pCapture();
-                board.get(c).activate();
-                board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ //Movement left
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                board.get(c).possibleCapture = this;
-                board.get(c).pCapture();
-                board.get(c).activate();
-                board.get(c).possiblePiece = this;
-                
-              }
-              break;
-            }
-         }
+         this.rookMovement();
+         
        }
        else if(this.name.equals("horse")){
-         if(pos+10 < 64 && pos < row*8 - 2 && row < 8){
-            if(board.get(pos + 10).isEmpty()){
-              board.get(pos + 10).activate();
-              board.get(pos + 10).possiblePiece = this;
-            } 
-            else{
-              if((board.get(pos + 10).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 10).myPiece.id > 16 && this.id <= 16)){
-                board.get(pos + 10).possibleCapture = this;
-                board.get(pos + 10).pCapture();
-                board.get(pos + 10).activate();
-                board.get(pos + 10).possiblePiece = this;
-              }
-            }
-         }
-         if(pos+17 < 64 && pos < row*8 - 1 && row < 7){
-           if(board.get(pos + 17).isEmpty()){
-            board.get(pos + 17).activate();
-            board.get(pos + 17).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos + 17).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 17).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 17).possibleCapture = this;
-               board.get(pos + 17).pCapture();
-               board.get(pos + 17).activate();
-               board.get(pos + 17).possiblePiece = this;
-             }
-           }
-         }
-         if(pos+15 < 64 && pos > (row - 1) * 8 && row < 7){
-           if(board.get(pos + 15).isEmpty()){
-            board.get(pos + 15).activate();
-            board.get(pos + 15).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos + 15).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 15).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 15).possibleCapture = this;
-               board.get(pos + 15).pCapture();
-               board.get(pos + 15).activate();
-               board.get(pos + 15).possiblePiece = this;
-             }
-           }
-         }
-         if(pos+6 < 64 && pos > ((row - 1) * 8) + 1 && row < 8){
-           if(board.get(pos + 6).isEmpty()){
-            board.get(pos + 6).activate();
-            board.get(pos + 6).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos + 6).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 6).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 6).possibleCapture = this;
-               board.get(pos + 6).pCapture();
-               board.get(pos + 6).activate();
-               board.get(pos + 6).possiblePiece = this;
-             }
-           }
-         }
-         if(pos-6 >= 0 && pos < row*8 - 2 && row > 1){
-           if(board.get(pos - 6).isEmpty()){
-            board.get(pos - 6).activate();
-            board.get(pos - 6).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos - 6).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 6).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 6).possibleCapture = this;
-               board.get(pos + 6).pCapture();
-               board.get(pos - 6).activate();
-               board.get(pos - 6).possiblePiece = this;
-             }
-           }
-         }
-         if(pos-15 >= 0 && pos < row*8 - 1 && row > 2){
-           if(board.get(pos - 15).isEmpty()){
-            board.get(pos - 15).activate();
-            board.get(pos - 15).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos - 15).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 15).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 15).possibleCapture = this;
-               board.get(pos - 15).pCapture();
-               board.get(pos - 15).activate();
-               board.get(pos - 15).possiblePiece = this;
-             }
-           }
-         }
-         if(pos-17 >= 0 && pos > (row - 1) * 8 && row > 2){
-           if(board.get(pos - 17).isEmpty()){
-            board.get(pos - 17).activate();
-            board.get(pos - 17).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos - 17).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 17).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 17).possibleCapture = this;
-               board.get(pos - 17).pCapture();
-               board.get(pos - 17).activate();
-               board.get(pos - 17).possiblePiece = this;
-             }
-           }
-         }
-         if(pos-10 >= 0 && pos > (row - 1) * 8 + 1 && row > 1){
-           if(board.get(pos - 10).isEmpty()){
-            board.get(pos - 10).activate();
-            board.get(pos - 10).possiblePiece = this;
-           }
-           else{
-             if((board.get(pos - 10).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 10).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 10).possibleCapture = this;
-               board.get(pos - 10).pCapture();
-               board.get(pos - 10).activate();
-               board.get(pos - 10).possiblePiece = this;
-             }
-           }
-         }
+         this.horseMovement();
        }
        else if(this.name.equals("bishop")){
-         
-         for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-               board.get(c).possibleCapture = this;
-               board.get(c).pCapture();
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-              }
-              break;
-            }
-         }
-         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               
-               if ((c)%8==0){
-                 break;
-               }
-               
-            }
-            else{
-              
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-               board.get(c).possibleCapture = this;
-               
-               board.get(c).pCapture();
-               
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c)%8==0){
-                 break;
-               }
-              }
-              break;
-            }
-         }
-         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-               board.get(c).possibleCapture = this;
-               board.get(c).pCapture();
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-              }
-              break;
-            }
-         }
-         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c)%8==0){
-                 break;
-               }
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-               board.get(c).possibleCapture = this;
-               board.get(c).pCapture();
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c)%8==0){
-                 break;
-               }
-              }
-              break;
-            }
-         }
-         
+         this.bishopMovement();
        }
        else if(this.name.equals("king")){
-
-          if ((pos + 8) < 64 ){//fowards movement 
-            if(board.get(pos + 8).isEmpty()){ 
-                board.get(pos + 8).activate();
-                board.get(pos + 8).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos + 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 8).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 8).possibleCapture = this;
-               board.get(pos + 8).pCapture();
-               board.get(pos + 8).activate();
-               board.get(pos + 8).possiblePiece = this;
-              }
-            }
-          } 
-          if ((pos - 8) >= 0){//backward movement 
-            if(board.get(pos - 8).isEmpty()){
-              board.get(pos - 8).activate();
-              board.get(pos - 8).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos - 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 8).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 8).possibleCapture = this;
-               board.get(pos - 8).pCapture();
-               board.get(pos - 8).activate();
-               board.get(pos - 8).possiblePiece = this;
-              }
-            }
-            
-          }  
-          if (pos < 64 && (pos+1)%8!=0){//left movement  
-            if(board.get(pos + 1).isEmpty()){
-              board.get(pos + 1).activate();
-              board.get(pos + 1).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos + 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 1).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 1).possibleCapture = this;
-               board.get(pos + 1).pCapture();
-               board.get(pos + 1).activate();
-               board.get(pos + 1).possiblePiece = this;
-              }
-            }
-          }
-          if ((pos) > 0 && pos%8!=0 ){// right movement
-            if(board.get(pos - 1).isEmpty()){
-                board.get(pos - 1).activate();
-                board.get(pos - 1).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos - 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 1).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 1).possibleCapture = this;
-               board.get(pos - 1).pCapture();
-               board.get(pos - 1).activate();
-               board.get(pos - 1).possiblePiece = this;
-              }
-            }
-          }
-          if ((pos - 7) > 0 && (pos+1)%8!=0){
-            if(board.get(pos - 7).isEmpty()){ //left  backwards diagonal movement
-                board.get(pos - 7).activate();
-                board.get(pos - 7).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 7).possibleCapture = this;
-               board.get(pos - 7).pCapture();
-               board.get(pos - 7).activate();
-               board.get(pos - 7).possiblePiece = this;
-              }
-            }
-          } 
-          if ((pos - 9) >= 0 && (pos)%8!=0){
-            if(board.get(pos - 9).isEmpty()){ //right backwards diagonal movement
-              board.get(pos - 9).activate();
-              board.get(pos - 9).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos - 9).possibleCapture = this;
-               board.get(pos - 9).pCapture();
-               board.get(pos - 9).activate();
-               board.get(pos - 9).possiblePiece = this;
-              }
-            }
-            
-          } 
-          if ((pos + 9) < 64 && (pos+1)%8!=0){//left forward diagonal movement
-            if(board.get(pos + 9).isEmpty()){
-              board.get(pos +9).activate();
-              board.get(pos +9).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 9).possibleCapture = this;
-               board.get(pos + 9).pCapture();
-               board.get(pos + 9).activate();
-               board.get(pos + 9).possiblePiece = this;
-              }
-            }
-          } 
-          if ((pos + 7) < 64 && (pos)%8!=0){ //right  forwards diagonal Movement
-            if(board.get(pos + 7).isEmpty()){
-                board.get(pos + 7).activate();
-                board.get(pos + 7).possiblePiece = this;
-            }
-            else{
-              if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
-               board.get(pos + 7).possibleCapture = this;
-               board.get(pos + 7).pCapture();
-               board.get(pos + 7).activate();
-               board.get(pos + 7).possiblePiece = this;
-              }
-            }
-          } 
-
+         this.kingMovement();
+          
        }
        else if(this.name.equals("queen")){
-          for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-               
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-                 if ((c+1)%8==0){
-                   break;
-                 }
-              }
-              break;
-            }
-         }
-         for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement   
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c)%8==0){
-                 break;
-               }
-               
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-                 if ((c)%8==0){
-                   break;
-                 }
-              }
-              break;
-            }
-         }
-         for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c+1)%8==0){
-                 break;
-               }
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-                 if ((c+1)%8==0){
-                   break;
-                 }
-              }
-              break;
-            }
-         }
-         for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-               if ((c)%8==0){
-                 break;
-               }
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-                 if ((c)%8==0){
-                   break;
-                 }
-              }
-              break;
-            }
-         }
-         for(int c = pos + 8; c < 64; c += 8){ //fowards movement 
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos - 8; c >= 0; c -= 8){ //backward movement 
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos + 1; c < row * 8 ; c++){ //rigth movement 
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ // left movement
-            if(board.get(c).isEmpty()){
-               board.get(c).activate();
-               board.get(c).possiblePiece = this;
-            }
-            else{
-              if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
-                 board.get(c).possibleCapture = this;
-                 board.get(c).pCapture();
-                 board.get(c).activate();
-                 board.get(c).possiblePiece = this;
-              }
-              break;
-            }
-         }
-         
+         this.queenMovement();
        }
     }
     else{
@@ -799,5 +180,669 @@ public void select(InteractiveFrame f){
       }
     }
   }
+  public void pawnMovement(){
+    //TODO: reduce and optimize algoritm 
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
 
+    
+   //To move fordward one cell black piece      
+   if(this.id <= 16 && (pos + 8) < 64){
+  
+     if(board.get(pos + 8).isEmpty()){
+       this.posibleMoves.add(board.get(pos + 8));
+       board.get(pos + 8).activate();
+       board.get(pos + 8).possiblePiece = this;
+     }                 
+     //Capture left
+     if(!board.get(pos + 9).isEmpty()){ 
+       if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
+         //this.posibleMoves.add(board.get(pos + 9));
+         
+         board.get(pos + 9).possibleCapture = this;
+         board.get(pos + 9).pCapture();
+         board.get(pos + 9).activate();
+         board.get(pos + 9).possiblePiece = this;
+        
+       }
+     }
+     //Capture right
+     if(!board.get(pos + 7).isEmpty()){
+       if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 7).possibleCapture = this;
+         board.get(pos + 7).pCapture();
+         board.get(pos + 7).activate();
+         board.get(pos + 7).possiblePiece = this;
+       }
+     }
+   }
+   //To move fordward two cells black piece  
+   if(this.id <= 16 && (pos + 16) < 64 && (pos >=8 && pos <=16 )){
+     if(board.get(pos + 16).isEmpty() && board.get(pos + 8).isEmpty()){
+       board.get(pos + 16).activate();
+       board.get(pos + 16).possiblePiece = this;
+     }
+     //Capture left
+     if(!board.get(pos + 9).isEmpty()){
+       if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 9).possibleCapture = this;
+         board.get(pos + 9).pCapture();
+         board.get(pos + 9).activate();
+         board.get(pos + 9).possiblePiece = this;
+       }
+     }
+     //Capture right
+     if(!board.get(pos + 7).isEmpty()){
+       if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 7).possibleCapture = this;
+         board.get(pos + 7).pCapture();
+         board.get(pos + 7).activate();
+         board.get(pos + 7).possiblePiece = this;
+       }
+     }
+   }
+   //To move fordward one cell white piece 
+   if(this.id > 16 && pos - 8 >= 0){
+     if(board.get(pos - 8).isEmpty()){
+       board.get(pos - 8).activate();
+       board.get(pos - 8).possiblePiece = this;
+     }
+     //Capture left
+     if(!board.get(pos - 9).isEmpty()){
+       if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 9).possibleCapture = this;
+         board.get(pos - 9).pCapture();
+         board.get(pos - 9).activate();
+         board.get(pos - 9).possiblePiece = this;
+       }
+     }
+     //Capture right
+     if(!board.get(pos - 7).isEmpty()){
+       if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 7).possibleCapture = this;
+         board.get(pos - 7).pCapture();
+         board.get(pos - 7).activate();
+         board.get(pos - 7).possiblePiece = this;
+       }
+     }
+   }
+   //To move fordward two cells white piece 
+   if(this.id > 16 && pos - 16 > 0 && (pos >= 48 && pos <= 55 )){
+     if(board.get(pos - 16).isEmpty() && board.get(pos - 8).isEmpty() ){
+       board.get(pos - 16).activate();
+       board.get(pos - 16).possiblePiece = this;
+     } 
+     //Capture left
+     if(!board.get(pos - 9).isEmpty()){
+       if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 9).possibleCapture = this;
+         board.get(pos - 9).pCapture();
+         board.get(pos - 9).activate();
+         board.get(pos - 9).possiblePiece = this;
+       }
+     }
+     //Capture right
+     if(!board.get(pos - 7).isEmpty()){
+       if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 7).possibleCapture = this;
+         board.get(pos - 7).pCapture();
+         board.get(pos - 7).activate();
+         board.get(pos - 7).possiblePiece = this;
+       }
+     }
+   }
+         
+         
+  }
+  public void rookMovement(){
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
+    int row = (pos/8) + 1;
+    
+    for(int c = pos + 8; c < 64; c += 8){ //Movement foward
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+          board.get(c).possibleCapture = this;
+          board.get(c).pCapture();
+          board.get(c).activate();
+          board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos - 8; c >= 0; c -= 8){ //Movement backward
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+          board.get(c).possibleCapture = this;
+          board.get(c).pCapture();
+          board.get(c).activate();
+          board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos + 1; c < row * 8 ; c++){ //Movement rigth
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+          board.get(c).possibleCapture = this;
+          board.get(c).pCapture();
+          board.get(c).activate();
+          board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ //Movement left
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+          board.get(c).possibleCapture = this;
+          board.get(c).pCapture();
+          board.get(c).activate();
+          board.get(c).possiblePiece = this;
+          
+        }
+        break;
+      }
+   }
+  }
+  public void horseMovement(){
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
+    int row = (pos/8) + 1;
+    
+    if(pos+10 < 64 && pos < row*8 - 2 && row < 8){
+      if(board.get(pos + 10).isEmpty()){
+        board.get(pos + 10).activate();
+        board.get(pos + 10).possiblePiece = this;
+      } 
+      else{
+        if((board.get(pos + 10).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 10).myPiece.id > 16 && this.id <= 16)){
+          board.get(pos + 10).possibleCapture = this;
+          board.get(pos + 10).pCapture();
+          board.get(pos + 10).activate();
+          board.get(pos + 10).possiblePiece = this;
+        }
+      }
+   }
+   if(pos+17 < 64 && pos < row*8 - 1 && row < 7){
+     if(board.get(pos + 17).isEmpty()){
+      board.get(pos + 17).activate();
+      board.get(pos + 17).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos + 17).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 17).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 17).possibleCapture = this;
+         board.get(pos + 17).pCapture();
+         board.get(pos + 17).activate();
+         board.get(pos + 17).possiblePiece = this;
+       }
+     }
+   }
+   if(pos+15 < 64 && pos > (row - 1) * 8 && row < 7){
+     if(board.get(pos + 15).isEmpty()){
+      board.get(pos + 15).activate();
+      board.get(pos + 15).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos + 15).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 15).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 15).possibleCapture = this;
+         board.get(pos + 15).pCapture();
+         board.get(pos + 15).activate();
+         board.get(pos + 15).possiblePiece = this;
+       }
+     }
+   }
+   if(pos+6 < 64 && pos > ((row - 1) * 8) + 1 && row < 8){
+     if(board.get(pos + 6).isEmpty()){
+      board.get(pos + 6).activate();
+      board.get(pos + 6).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos + 6).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 6).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 6).possibleCapture = this;
+         board.get(pos + 6).pCapture();
+         board.get(pos + 6).activate();
+         board.get(pos + 6).possiblePiece = this;
+       }
+     }
+   }
+   if(pos-6 >= 0 && pos < row*8 - 2 && row > 1){
+     if(board.get(pos - 6).isEmpty()){
+      board.get(pos - 6).activate();
+      board.get(pos - 6).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos - 6).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 6).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 6).possibleCapture = this;
+         board.get(pos + 6).pCapture();
+         board.get(pos - 6).activate();
+         board.get(pos - 6).possiblePiece = this;
+       }
+     }
+   }
+   if(pos-15 >= 0 && pos < row*8 - 1 && row > 2){
+     if(board.get(pos - 15).isEmpty()){
+      board.get(pos - 15).activate();
+      board.get(pos - 15).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos - 15).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 15).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 15).possibleCapture = this;
+         board.get(pos - 15).pCapture();
+         board.get(pos - 15).activate();
+         board.get(pos - 15).possiblePiece = this;
+       }
+     }
+   }
+   if(pos-17 >= 0 && pos > (row - 1) * 8 && row > 2){
+     if(board.get(pos - 17).isEmpty()){
+      board.get(pos - 17).activate();
+      board.get(pos - 17).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos - 17).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 17).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 17).possibleCapture = this;
+         board.get(pos - 17).pCapture();
+         board.get(pos - 17).activate();
+         board.get(pos - 17).possiblePiece = this;
+       }
+     }
+   }
+   if(pos-10 >= 0 && pos > (row - 1) * 8 + 1 && row > 1){
+     if(board.get(pos - 10).isEmpty()){
+      board.get(pos - 10).activate();
+      board.get(pos - 10).possiblePiece = this;
+     }
+     else{
+       if((board.get(pos - 10).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 10).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 10).possibleCapture = this;
+         board.get(pos - 10).pCapture();
+         board.get(pos - 10).activate();
+         board.get(pos - 10).possiblePiece = this;
+       }
+     }
+   }
+  }
+  
+  public void bishopMovement(){
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
+    
+    for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+         board.get(c).possibleCapture = this;
+         board.get(c).pCapture();
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+        }
+        break;
+      }
+   }
+   for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         
+         if ((c)%8==0){
+           break;
+         }
+         
+      }
+      else{
+        
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+         board.get(c).possibleCapture = this;
+         
+         board.get(c).pCapture();
+         
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c)%8==0){
+           break;
+         }
+        }
+        break;
+      }
+   }
+   for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+         board.get(c).possibleCapture = this;
+         board.get(c).pCapture();
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+        }
+        break;
+      }
+   }
+   for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c)%8==0){
+           break;
+         }
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+         board.get(c).possibleCapture = this;
+         board.get(c).pCapture();
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c)%8==0){
+           break;
+         }
+        }
+        break;
+      }
+   }
+  
+  } 
+  public void kingMovement(){
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
+    if ((pos + 8) < 64 ){//fowards movement 
+      if(board.get(pos + 8).isEmpty()){ 
+          board.get(pos + 8).activate();
+          board.get(pos + 8).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos + 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 8).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 8).possibleCapture = this;
+         board.get(pos + 8).pCapture();
+         board.get(pos + 8).activate();
+         board.get(pos + 8).possiblePiece = this;
+        }
+      }
+    } 
+    if ((pos - 8) >= 0){//backward movement 
+      if(board.get(pos - 8).isEmpty()){
+        board.get(pos - 8).activate();
+        board.get(pos - 8).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos - 8).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 8).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 8).possibleCapture = this;
+         board.get(pos - 8).pCapture();
+         board.get(pos - 8).activate();
+         board.get(pos - 8).possiblePiece = this;
+        }
+      }
+      
+    }  
+    if (pos < 64 && (pos+1)%8!=0){//left movement  
+      if(board.get(pos + 1).isEmpty()){
+        board.get(pos + 1).activate();
+        board.get(pos + 1).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos + 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 1).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 1).possibleCapture = this;
+         board.get(pos + 1).pCapture();
+         board.get(pos + 1).activate();
+         board.get(pos + 1).possiblePiece = this;
+        }
+      }
+    }
+    if ((pos) > 0 && pos%8!=0 ){// right movement
+      if(board.get(pos - 1).isEmpty()){
+          board.get(pos - 1).activate();
+          board.get(pos - 1).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos - 1).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 1).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 1).possibleCapture = this;
+         board.get(pos - 1).pCapture();
+         board.get(pos - 1).activate();
+         board.get(pos - 1).possiblePiece = this;
+        }
+      }
+    }
+    if ((pos - 7) > 0 && (pos+1)%8!=0){
+      if(board.get(pos - 7).isEmpty()){ //left  backwards diagonal movement
+          board.get(pos - 7).activate();
+          board.get(pos - 7).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos - 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 7).possibleCapture = this;
+         board.get(pos - 7).pCapture();
+         board.get(pos - 7).activate();
+         board.get(pos - 7).possiblePiece = this;
+        }
+      }
+    } 
+    if ((pos - 9) >= 0 && (pos)%8!=0){
+      if(board.get(pos - 9).isEmpty()){ //right backwards diagonal movement
+        board.get(pos - 9).activate();
+        board.get(pos - 9).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos - 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 9).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos - 9).possibleCapture = this;
+         board.get(pos - 9).pCapture();
+         board.get(pos - 9).activate();
+         board.get(pos - 9).possiblePiece = this;
+        }
+      }
+      
+    } 
+    if ((pos + 9) < 64 && (pos+1)%8!=0){//left forward diagonal movement
+      if(board.get(pos + 9).isEmpty()){
+        board.get(pos +9).activate();
+        board.get(pos +9).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 9).possibleCapture = this;
+         board.get(pos + 9).pCapture();
+         board.get(pos + 9).activate();
+         board.get(pos + 9).possiblePiece = this;
+        }
+      }
+    } 
+    if ((pos + 7) < 64 && (pos)%8!=0){ //right  forwards diagonal Movement
+      if(board.get(pos + 7).isEmpty()){
+          board.get(pos + 7).activate();
+          board.get(pos + 7).possiblePiece = this;
+      }
+      else{
+        if((board.get(pos + 7).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 7).myPiece.id > 16 && this.id <= 16)){
+         board.get(pos + 7).possibleCapture = this;
+         board.get(pos + 7).pCapture();
+         board.get(pos + 7).activate();
+         board.get(pos + 7).possiblePiece = this;
+        }
+      }
+    } 
+
+  }
+  public void queenMovement(){
+    this.posibleMoves = new ArrayList<Cell>();
+    int pos = board.indexOf(this.location);
+    int row = (pos/8) + 1;
+    for (int c = pos - 7; c >= 0 && (pos+1)%8!=0 ; c -= 7){//left  backwards diagonal movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+         
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+           if ((c+1)%8==0){
+             break;
+           }
+        }
+        break;
+      }
+   }
+   for(int c = pos - 9; c >= 0 && pos%8!=0; c -= 9){ //right backwards diagonal movement   
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c)%8==0){
+           break;
+         }
+         
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+           if ((c)%8==0){
+             break;
+           }
+        }
+        break;
+      }
+   }
+   for(int c = pos + 9; c < 64 && (pos+1)%8!=0 ; c += 9){ //left forward diagonal movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c+1)%8==0){
+           break;
+         }
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+           if ((c+1)%8==0){
+             break;
+           }
+        }
+        break;
+      }
+   }
+   for(int c = pos + 7; c < 64 && pos%8!=0; c += 7){ //right  forwards diagonal Movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+         if ((c)%8==0){
+           break;
+         }
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+           if ((c)%8==0){
+             break;
+           }
+        }
+        break;
+      }
+   }
+   for(int c = pos + 8; c < 64; c += 8){ //fowards movement 
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos - 8; c >= 0; c -= 8){ //backward movement 
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos + 1; c < row * 8 ; c++){ //rigth movement 
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+   for(int c = pos - 1; c >= (row - 1) * 8 ; c--){ // left movement
+      if(board.get(c).isEmpty()){
+         board.get(c).activate();
+         board.get(c).possiblePiece = this;
+      }
+      else{
+        if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
+           board.get(c).possibleCapture = this;
+           board.get(c).pCapture();
+           board.get(c).activate();
+           board.get(c).possiblePiece = this;
+        }
+        break;
+      }
+   }
+  }
 }
