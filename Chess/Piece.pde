@@ -174,7 +174,7 @@ public void select(InteractiveFrame f){
                }
          }
          if(this.id <= 16 && (pos + 16) < 64 && (pos >=8 && pos <=16 )){
-               if(board.get(pos + 16).isEmpty()){
+               if(board.get(pos + 16).isEmpty() && board.get(pos + 8).isEmpty()){
                  board.get(pos + 16).activate();
                  board.get(pos + 16).possiblePiece = this;
                }
@@ -223,7 +223,7 @@ public void select(InteractiveFrame f){
          }
 
          if(this.id > 16 && pos - 16 > 0 && (pos >= 48 && pos <= 55 )){
-               if(board.get(pos - 16).isEmpty()){
+               if(board.get(pos - 16).isEmpty() && board.get(pos - 8).isEmpty() ){
                  board.get(pos - 16).activate();
                  board.get(pos - 16).possiblePiece = this;
                } 
