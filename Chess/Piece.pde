@@ -37,6 +37,7 @@ public class Piece{
   Cell location;
   ArrayList<Cell> posibleMoves;
   ArrayList<Cell> board;
+  boolean alive;
   //to castle = hacer enroque rey y torre, el rey  no debe estar en jaque 
   //check   =jaque 
   //checkmate = jaque mate
@@ -50,6 +51,7 @@ public class Piece{
     this.id = id;
     this.capture = true;
     this.selected = false;
+    this.alive = true;
     this.name = name;
     this.location = cell;
     this.board = board;
@@ -87,48 +89,48 @@ public class Piece{
   }
   
   public void piecesDrawing(PGraphics pg) {  
-    pg.noStroke();
     
+    if(this.alive == true){
+      pg.noStroke(); 
+      pg.pushMatrix();
+      pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
+      pg.rotateX(radians(90));
+      if(this.id <= 16){
+        pg.rotateY(radians(-85));
+      }
+      else{
+        pg.rotateY(radians(95));
+      }   
+      pg.scale(6);
+      
+      this.s.setStroke(true);
+      this.s.setStrokeWeight(0.3);
+      
+      if(this.id <= 16){
+        if(this.selected == true){
+         this.s.setFill(color(180,0,0));
+         this.s.setStroke(color(0));
+        }
+        else{
+          this.s.setFill(color(50));
+          this.s.setStroke(color(255));
+        }
+      }
+      else{
+        if(this.selected == true){
+         this.s.setFill(color(180,0,0));
+         this.s.setStroke(color(0));
+        }
+        else{
+          this.s.setFill(color(230));
+          this.s.setStroke(color(0));
+        }     
+      }
      
-    pg.pushMatrix();
-    pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
-    pg.rotateX(radians(90));
-    if(this.id <= 16){
-      pg.rotateY(radians(-85));
+      pg.shape(this.s);
+  
+      pg.popMatrix();
     }
-    else{
-      pg.rotateY(radians(95));
-    }   
-    pg.scale(6);
-    
-    this.s.setStroke(true);
-    this.s.setStrokeWeight(0.3);
-    
-    if(this.id <= 16){
-      if(this.selected == true){
-       this.s.setFill(color(180,0,0));
-       this.s.setStroke(color(0));
-      }
-      else{
-        this.s.setFill(color(50));
-        this.s.setStroke(color(255));
-      }
-    }
-    else{
-      if(this.selected == true){
-       this.s.setFill(color(180,0,0));
-       this.s.setStroke(color(0));
-      }
-      else{
-        this.s.setFill(color(230));
-        this.s.setStroke(color(0));
-      }     
-    }
-   
-    pg.shape(this.s);
-
-    pg.popMatrix();
- 
   }
   
 public void select(InteractiveFrame f){
@@ -204,7 +206,6 @@ public void select(InteractiveFrame f){
      if(!board.get(pos + 9).isEmpty()){ 
        if((board.get(pos + 9).myPiece.id <= 16 && this.id > 16) || (board.get(pos + 9).myPiece.id > 16 && this.id <= 16)){
          //this.posibleMoves.add(board.get(pos + 9));
-         
          board.get(pos + 9).possibleCapture = this;
          board.get(pos + 9).pCapture();
          board.get(pos + 9).activate();
