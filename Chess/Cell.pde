@@ -37,7 +37,6 @@ public class Cell{
   int id;
   public Piece myPiece;
   public Piece possiblePiece;
-  public Piece possibleCapture;
   
   boolean empty;
   boolean activated;
@@ -49,7 +48,6 @@ public class Cell{
     this.pCapture = false;
     this.myPiece = null;
     this.possiblePiece = null;
-    this.possibleCapture = null;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -125,7 +123,6 @@ public class Cell{
         this.myPiece.alive = false;
       }
       this.possiblePiece.location.empty = true;
-      this.possibleCapture = null;
       this.empty = false;
       this.myPiece = this.possiblePiece;
       this.myPiece.location = this;
