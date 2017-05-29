@@ -1,5 +1,5 @@
 public class Piece{
-  int id;
+  int id; //from 1 to 64
   String name;
   boolean capture;
   boolean selected;
@@ -89,7 +89,7 @@ public class Piece{
   }
   
 public void select(InteractiveFrame f){
-  
+    
     int i = this.location.i;
     int j = this.location.j;
     
@@ -97,6 +97,8 @@ public void select(InteractiveFrame f){
     int row = (pos/8) + 1;
     
     this.posibleMoves = new ArrayList<Cell>();
+    
+    
     
     if(this.selected == false){
       for(int k = 0; k < this.board.size(); k++){
@@ -108,7 +110,10 @@ public void select(InteractiveFrame f){
        }
        this.selected = true;
        if(this.name.equals("pawn")){
-         if(this.id < 16 && pos + 8 < 64){
+         println(this.id);
+         if(this.id <= 16 && (pos + 8) < 64){
+             //
+             println("prueba pawn");
                if(board.get(pos + 8).isEmpty()){
                  board.get(pos + 8).activate();
                  board.get(pos + 8).possiblePiece = this;
@@ -122,7 +127,7 @@ public void select(InteractiveFrame f){
                  }
                }
          }
-         if(this.id < 16 && pos + 16 < 64 && (pos >=8 && pos <16 )){
+         if(this.id <= 16 && (pos + 16) < 64 && (pos >=8 && pos <=16 )){
                if(board.get(pos + 16).isEmpty()){
                  board.get(pos + 16).activate();
                  board.get(pos + 16).possiblePiece = this;
@@ -151,7 +156,8 @@ public void select(InteractiveFrame f){
                }
          }
 
-         if(this.id < 16 && pos - 16 < 64 && (pos >= 48 && pos < 54 )){
+         if(this.id > 16 && pos - 16 > 0 && (pos >= 48 && pos <= 55 )){
+               //println ("prueba de peones"); 
                if(board.get(pos - 16).isEmpty()){
                  board.get(pos - 16).activate();
                  board.get(pos - 16).possiblePiece = this;
