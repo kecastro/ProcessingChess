@@ -117,10 +117,9 @@ public void select(InteractiveFrame f){
        }
        this.selected = true;
        if(this.name.equals("pawn")){
-         println(this.id);
+         
          if(this.id <= 16 && (pos + 8) < 64){
-             //
-             println("prueba pawn");
+
                if(board.get(pos + 8).isEmpty()){
                  board.get(pos + 8).activate();
                  board.get(pos + 8).possiblePiece = this;
@@ -164,7 +163,6 @@ public void select(InteractiveFrame f){
          }
 
          if(this.id > 16 && pos - 16 > 0 && (pos >= 48 && pos <= 55 )){
-               //println ("prueba de peones"); 
                if(board.get(pos - 16).isEmpty()){
                  board.get(pos - 16).activate();
                  board.get(pos - 16).possiblePiece = this;
@@ -385,19 +383,17 @@ public void select(InteractiveFrame f){
             if(board.get(c).isEmpty()){
                board.get(c).activate();
                board.get(c).possiblePiece = this;
-               //println (pos);
-               //println (c);
+               
                if ((c)%8==0){
                  break;
                }
                
             }
             else{
-              println ("busqueda de error");
-              println (c);
+              
               if((board.get(c).myPiece.id <= 16 && this.id > 16) || (board.get(c).myPiece.id > 16 && this.id <= 16)){
                board.get(c).possibleCapture = this;
-               println ("Activo");
+               
                board.get(c).pCapture();
                
                board.get(c).activate();
