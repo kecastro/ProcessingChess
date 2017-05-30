@@ -464,7 +464,7 @@ public void select(InteractiveFrame f){
      else{
        if((board.get(pos - 6).myPiece.id <= 16 && this.id > 16) || (board.get(pos - 6).myPiece.id > 16 && this.id <= 16)){
          //board.get(pos - 6).possibleCapture = this;
-         board.get(pos + 6).pCapture();
+         board.get(pos - 6).pCapture();
          board.get(pos - 6).activate();
          board.get(pos - 6).possiblePiece = this;
        }
