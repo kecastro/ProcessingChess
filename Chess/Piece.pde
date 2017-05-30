@@ -86,7 +86,13 @@ public class Piece{
     pg.pushMatrix();
     
     if(this.alive == true){
-       pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
+       if(this.id <= 16){
+         pg.translate(this.location.x -1, this.location.y - 1, this.location.z + 2);
+       }
+       else{
+         pg.translate(this.location.x + 1, this.location.y - 1, this.location.z + 2);
+       }
+       
        pg.scale(6);
     }
     else{
