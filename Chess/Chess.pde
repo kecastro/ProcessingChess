@@ -197,6 +197,9 @@ void setup() {
 }
 
 void draw() {
+  pointLight(255, 255, 255, 100, 0, 400);
+  pointLight(255, 255, 255, -100, 0, 400);
+  
   //InteractiveFrame.sync(scene.eyeFrame(), iFrame);
   for (int i = 0; i < board.length; i++) {
     InteractiveFrame.sync(board[i], auxBoard[i]);
